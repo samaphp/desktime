@@ -2,8 +2,6 @@
 
 namespace Samaphp\Desktime;
 
-use Samaphp\Desktime\DesktimeClass;
-
 /**
  * Class Account.
  */
