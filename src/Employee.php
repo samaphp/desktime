@@ -15,7 +15,7 @@ class Employee extends DesktimeClass {
   }
 
   /**
-   * List all boxes in pipeline.
+   * List all employees.
    */
   public function all($options = []) {
     $query = [];
