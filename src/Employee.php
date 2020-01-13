@@ -33,4 +33,22 @@ class Employee extends DesktimeClass {
     return $res;
   }
 
+  /**
+   * Get specific employee or current employee.
+   */
+  public function get($options = []) {
+    $query = [];
+    // Add optional parameters if provided.
+    if (isset($options['id'])) {
+      $query['id'] = $options['id'];
+    }
+    if (isset($options['date'])) {
+      $query['date'] = $options['date'];
+    }
+
+    $url = 'employee';
+    $url = $this->buildUrl($url, $query);
+    $res = $this->makeGetCall($url);
+    return $res;
+  }
 }
