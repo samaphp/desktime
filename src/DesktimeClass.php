@@ -114,27 +114,6 @@ class DesktimeClass {
   }
 
   /**
-   * To make the GET call.
-   *
-   * We can hack this function to provide mocks or caching the results.
-   *
-   * @param string $url
-   *   The full service URL without query parameters.
-   *
-   * @param string $query
-   *   The already build URL query.
-   *
-   * @return object
-   *   The call result.
-   */
-  public function get($url) {
-    // @TODO: Making this function cachable.
-    // Making the call.
-    $data = $this->makeGetCall($url);
-    return $data;
-  }
-
-  /**
    * Making the real GET call.
    */
   public function makeGetCall($url) {
