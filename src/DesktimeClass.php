@@ -67,7 +67,6 @@ class DesktimeClass {
    * Set the authorization value.
    */
   public function setCredentials($credentials) {
-    // Streak using only username.
     $this->credentials['api_key'] = $credentials['api_key'];
     return $this;
   }
