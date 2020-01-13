@@ -1,0 +1,25 @@
+{
+  "name": "samaphp/desktime",
+  "description": "",
+  "keywords": [
+    "desktime",
+    "desktimeapi",
+    "desktime.com"
+  ],
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Saud Alfadhli",
+      "email": "osc@samaphp.com",
+      "homepage": "https://samaphp.com",
+      "role": ""
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "autoload": {
+    "psr-4": { "Samaphp\\Desktime\\": "src/" }
+  }
+}
