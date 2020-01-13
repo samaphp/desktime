@@ -20,7 +20,7 @@ class Account extends DesktimeClass {
   public function company() {
     $url = 'company';
     $url = $this->buildUrl($url);
-    $res = $this->get($url, '');
+    $res = $this->makeGetCall($url, '');
     return $res;
   }
 

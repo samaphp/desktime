@@ -29,7 +29,7 @@ class Employee extends DesktimeClass {
 
     $url = 'employees';
     $url = $this->buildUrl($url, $query);
-    $res = $this->get($url);
+    $res = $this->makeGetCall($url);
     return $res;
   }
 
