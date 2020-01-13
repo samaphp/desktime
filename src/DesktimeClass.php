@@ -127,17 +127,17 @@ class DesktimeClass {
    * @return object
    *   The call result.
    */
-  public function get($url, $query) {
+  public function get($url) {
     // @TODO: Making this function cachable.
     // Making the call.
-    $data = $this->makeGetCall($url, $query);
+    $data = $this->makeGetCall($url);
     return $data;
   }
 
   /**
    * Making the real GET call.
    */
-  public function makeGetCall($url, $query) {
+  public function makeGetCall($url) {
     $client = $this->httpClient;
     try {
       // @TODO: Allow override header values.
