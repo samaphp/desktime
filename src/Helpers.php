@@ -21,11 +21,11 @@ class Helpers extends DesktimeClass {
    */
   private $goals = [
     'desktime' => [
-      'targeted' => (60 * 60 * 7.5),
+      'target' => (60 * 60 * 7.5),
       'minimum' => (60 * 60 * 7),
     ],
     'productive' => [
-      'targeted' => (60 * 60 * 6),
+      'target' => (60 * 60 * 6),
       'minimum' => (60 * 60 * 5),
     ],
   ];
@@ -91,24 +91,24 @@ class Helpers extends DesktimeClass {
       $employee = $this->employee->get(['date' => $date]);
       $date_time = strtotime($date);
 
-      $targeted_productive_goal = FALSE;
-      if ($employee->body->productiveTime > $this->goals['productive']['targeted']) {
-        $targeted_productive_goal = TRUE;
+      $target_productive_goal = 0;
+      if ($employee->body->productiveTime > $this->goals['productive']['target']) {
+        $target_productive_goal = 1;
       }
 
-      $minimum_productive_goal = FALSE;
+      $minimum_productive_goal = 0;
       if ($employee->body->productiveTime > $this->goals['productive']['minimum']) {
-        $minimum_productive_goal = TRUE;
+        $minimum_productive_goal = 1;
       }
 
-      $targeted_desktime_goal = FALSE;
-      if ($employee->body->desktimeTime > $this->goals['desktime']['targeted']) {
-        $targeted_desktime_goal = TRUE;
+      $target_desktime_goal = 0;
+      if ($employee->body->desktimeTime > $this->goals['desktime']['target']) {
+        $target_desktime_goal = 1;
       }
 
-      $minimum_desktime_goal = FALSE;
+      $minimum_desktime_goal = 0;
       if ($employee->body->desktimeTime > $this->goals['desktime']['minimum']) {
-        $minimum_desktime_goal = TRUE;
+        $minimum_desktime_goal = 1;
       }
 
       $report['days'][] = [
@@ -116,12 +116,12 @@ class Helpers extends DesktimeClass {
         'date' => date('Y/m/d', $date_time),
         'productive' => [
           'time' => gmdate('H:i:s', $employee->body->productiveTime),
-          'targeted' => $targeted_productive_goal,
+          'target' => $target_productive_goal,
           'minimum' => $minimum_productive_goal,
         ],
         'desktime' => [
           'time' => gmdate('H:i:s', $employee->body->desktimeTime),
-          'targeted' => $targeted_desktime_goal,
+          'target' => $target_desktime_goal,
           'minimum' => $minimum_desktime_goal,
         ],
       ];
