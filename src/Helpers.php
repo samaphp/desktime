@@ -48,7 +48,7 @@ class Helpers extends DesktimeClass {
   /**
    * Getting last work days.
    */
-  public function getLastWorkDays($limit = 5, $week_days = [1, 2, 3, 4, 7]) {
+  public function getLastDays($limit = 5, $week_days = [1, 2, 3, 4, 7]) {
     // Source: https://stackoverflow.com/a/47750178/366884
     $date = date('Y/m/d');
     $ts = strtotime($date);
