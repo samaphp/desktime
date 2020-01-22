@@ -8,10 +8,25 @@ namespace Samaphp\Desktime;
 class Helpers extends DesktimeClass {
 
   /**
+   * The employee.
+   *
+   * @var \Samaphp\Desktime\Employee
+   */
+  private $employee;
+
+  /**
    * Constructs a new object.
    */
   public function __construct() {
     parent::__construct();
+  }
+
+  /**
+   * Set the targeted Employee object.
+   */
+  public function setEmployee($employee) {
+    $this->employee = $employee;
+    return $this;
   }
 
   /**
