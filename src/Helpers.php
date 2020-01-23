@@ -19,7 +19,7 @@ class Helpers extends DesktimeClass {
    *
    * @var array
    */
-  private $goals = [
+  public $goals = [
     'desktime' => [
       'target' => (60 * 60 * 7.5),
       'minimum' => (60 * 60 * 7),
