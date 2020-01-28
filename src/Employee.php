@@ -51,4 +51,27 @@ class Employee extends DesktimeClass {
     $res = $this->makeGetCall($url);
     return $res;
   }
+
+  /**
+   * Get specific employee data by his Desktime email.
+   */
+  public function getEmployeeByEmail($email) {
+    $result = new \stdClass();
+    $result->pass = FALSE;
+
+    $all_employees = $this->all();
+    if (($all_employees->pass) && isset($all_employees->body->employees)) {
+      $employees = reset($all_employees->body->employees);
+      if (count($employees) > 0) {
+        foreach ($employees as $employee) {
+          if ($email == $employee->email) {
+            $result->pass = TRUE;
+            $result->data = $employee;
+            break;
+          }
+        }
+      }
+    }
+    return $result;
+  }
 }
