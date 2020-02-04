@@ -7,11 +7,14 @@ namespace Samaphp\Desktime;
  */
 class Employee extends DesktimeClass {
 
+  private $employee_id;
+
   /**
    * Constructs a new object.
    */
-  public function __construct() {
+  public function __construct($employee_id = FALSE) {
     parent::__construct();
+    $this->employee_id = $employee_id;
   }
 
   /**
@@ -41,6 +44,10 @@ class Employee extends DesktimeClass {
     // Add optional parameters if provided.
     if (isset($options['id'])) {
       $query['id'] = $options['id'];
+    }
+    // We will override the employee ID if it was injected in this class.
+    if (isset($this->employee_id) && is_numeric($this->employee_id)) {
+      $query['id'] = $this->employee_id;
     }
     if (isset($options['date'])) {
       $query['date'] = $options['date'];
