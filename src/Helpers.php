@@ -84,17 +84,29 @@ class Helpers extends DesktimeClass {
     return $result;
   }
 
-  private function reportProductive($days) {
+  private function reportProductive($days, $employee_id = FALSE) {
     $report = [];
     $report['days'] = [];
     $report['short'] = [
       'desktime' => [
-        'seconds' => 0,
-        'hours' => 0,
+        'minimum' => [
+          'seconds' => 0,
+          'hours' => 0,
+        ],
+        'target' => [
+          'seconds' => 0,
+          'hours' => 0,
+        ],
       ],
       'productive' => [
-        'seconds' => 0,
-        'hours' => 0,
+        'minimum' => [
+          'seconds' => 0,
+          'hours' => 0,
+        ],
+        'target' => [
+          'seconds' => 0,
+          'hours' => 0,
+        ],
       ],
     ];
     foreach ($days as $date) {
@@ -112,11 +124,18 @@ class Helpers extends DesktimeClass {
         $minimum_productive_goal = 1;
       }
 
-      $short_productive = 0;
+      $minimum_short_productive = 0;
       if ($employee->body->productiveTime < $this->goals['productive']['minimum']) {
-        $short_productive = $this->goals['productive']['minimum'] - $employee->body->productiveTime;
-        $report['short']['productive']['seconds'] = $short_productive + $report['short']['productive']['seconds'];
-        $report['short']['productive']['hours'] = gmdate('H:i:s', $report['short']['productive']['seconds']);
+        $minimum_short_productive = $this->goals['productive']['minimum'] - $employee->body->productiveTime;
+        $report['short']['productive']['minimum']['seconds'] = $minimum_short_productive + $report['short']['productive']['minimum']['seconds'];
+        $report['short']['productive']['minimum']['hours'] = gmdate('H:i:s', $report['short']['productive']['minimum']['seconds']);
+      }
+
+      $target_short_productive = 0;
+      if ($employee->body->productiveTime < $this->goals['productive']['target']) {
+        $target_short_productive = $this->goals['productive']['target'] - $employee->body->productiveTime;
+        $report['short']['productive']['target']['seconds'] = $target_short_productive + $report['short']['productive']['target']['seconds'];
+        $report['short']['productive']['target']['hours'] = gmdate('H:i:s', $report['short']['productive']['target']['seconds']);
       }
 
       $target_desktime_goal = 0;
@@ -129,11 +148,18 @@ class Helpers extends DesktimeClass {
         $minimum_desktime_goal = 1;
       }
 
-      $short_desktime = 0;
+      $minimum_short_desktime = 0;
       if ($employee->body->desktimeTime < $this->goals['desktime']['minimum']) {
-        $short_desktime = $this->goals['desktime']['minimum'] - $employee->body->desktimeTime;
-        $report['short']['desktime']['seconds'] = $short_desktime + $report['short']['desktime']['seconds'];
-        $report['short']['desktime']['hours'] = gmdate('H:i:s', $report['short']['desktime']['seconds']);
+        $minimum_short_desktime = $this->goals['desktime']['minimum'] - $employee->body->desktimeTime;
+        $report['short']['desktime']['minimum']['seconds'] = $minimum_short_desktime + $report['short']['desktime']['minimum']['seconds'];
+        $report['short']['desktime']['minimum']['hours'] = gmdate('H:i:s', $report['short']['desktime']['minimum']['seconds']);
+      }
+
+      $target_short_desktime = 0;
+      if ($employee->body->desktimeTime < $this->goals['desktime']['target']) {
+        $target_short_desktime = $this->goals['desktime']['target'] - $employee->body->desktimeTime;
+        $report['short']['desktime']['target']['seconds'] = $target_short_desktime + $report['short']['desktime']['target']['seconds'];
+        $report['short']['desktime']['target']['hours'] = gmdate('H:i:s', $report['short']['desktime']['target']['seconds']);
       }
 
       $report['days'][] = [
@@ -144,8 +170,14 @@ class Helpers extends DesktimeClass {
           'target' => $target_productive_goal,
           'minimum' => $minimum_productive_goal,
           'short' => [
-            'seconds' => $short_productive,
-            'hours' => gmdate('H:i:s', $short_productive),
+            'target' => [
+              'seconds' => $target_short_productive,
+              'hours' => gmdate('H:i:s', $target_short_productive),
+            ],
+            'minimum' => [
+              'seconds' => $minimum_short_productive,
+              'hours' => gmdate('H:i:s', $minimum_short_productive),
+            ],
           ],
         ],
         'desktime' => [
@@ -153,8 +185,14 @@ class Helpers extends DesktimeClass {
           'target' => $target_desktime_goal,
           'minimum' => $minimum_desktime_goal,
           'short' => [
-            'seconds' => $short_desktime,
-            'hours' => gmdate('H:i:s', $short_desktime),
+            'target' => [
+              'seconds' => $target_short_desktime,
+              'hours' => gmdate('H:i:s', $target_short_desktime),
+            ],
+            'minimum' => [
+              'seconds' => $minimum_short_desktime,
+              'hours' => gmdate('H:i:s', $minimum_short_desktime),
+            ],
           ],
         ],
       ];
