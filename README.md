@@ -47,4 +47,9 @@ print_r($all_employees);
 // Getting current employee. (the owner of this API key)
 $current_employee = $Employee->get();
 print_r($current_employee);
+
+// Load employee data by his Desktime email.
+$email = 'email@example.com';
+$employee = $Employee->getEmployeeByEmail($email);
+print_r($employee);
 ```
