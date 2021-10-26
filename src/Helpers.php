@@ -182,6 +182,7 @@ class Helpers extends DesktimeClass {
         'date' => date('Y/m/d', $date_time),
         'productive' => [
           'time' => gmdate('H:i:s', $employee->body->productiveTime),
+          'time_seconds' => $employee->body->productiveTime,
           'target' => $target_productive_goal,
           'minimum' => $minimum_productive_goal,
           'short' => [
@@ -197,6 +198,7 @@ class Helpers extends DesktimeClass {
         ],
         'desktime' => [
           'time' => gmdate('H:i:s', $employee->body->desktimeTime),
+          'time_seconds' => $employee->body->desktimeTime,
           'target' => $target_desktime_goal,
           'minimum' => $minimum_desktime_goal,
           'short' => [
