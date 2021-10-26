@@ -21,8 +21,8 @@ class Helpers extends DesktimeClass {
    */
   private $goals = [
     'desktime' => [
-      'target' => (60 * 60 * 7.5),
-      'minimum' => (60 * 60 * 7),
+      'target' => (60 * 60 * 7),
+      'minimum' => (60 * 60 * 6),
     ],
     'productive' => [
       'target' => (60 * 60 * 6),
@@ -51,6 +51,13 @@ class Helpers extends DesktimeClass {
   public function setGoals($goals) {
     $this->goals = $goals;
     return $this;
+  }
+
+  /**
+   * Get the goals.
+   */
+  public function getGoals($goals) {
+    return $this->goals;
   }
 
   /**
