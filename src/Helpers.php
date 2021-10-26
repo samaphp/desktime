@@ -56,7 +56,7 @@ class Helpers extends DesktimeClass {
   /**
    * Get the goals.
    */
-  public function getGoals($goals) {
+  public function getGoals() {
     return $this->goals;
   }
 
